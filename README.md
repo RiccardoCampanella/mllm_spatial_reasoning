@@ -1,6 +1,6 @@
 # DuTCh SpaCE: Spatial Reasoning in Multimodal LLMs via CoT Distillation and Monte Carlo Tree Search
 
-![DuTCh SpaCE Overview](https://raw.githubusercontent.com/riccardocampanella/dutch-space/main/assets/dutch-space.jpeg)
+![DuTCh SpaCE Overview](assets/dutch-space.jpeg)
 
 
 > **Exploring spatial reasoning capabilities in state-of-the-art Multimodal LLMs for Dutch building renovation, introducing the DuTCh SpaCE framework to enhance reasoning and reduce hallucinations.**
