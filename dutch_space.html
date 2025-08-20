@@ -1,0 +1,676 @@
+        .website-link:hover {
+            text-decoration: underline !important;
+        }
+
+        .abstract-box {
+            margin: 1.5rem 0;
+        }
+
+        .mulberry-highlight {
+            border: 2px solid #0969da !important;
+            background: rgba(9, 105, 218, 0.05) !important;
+        }<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature-wise Performance Analysis</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #24292f;
+            background-color: #ffffff;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f6f8fa 0%, #ffffff 100%);
+            border-bottom: 1px solid #d1d9e0;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #24292f;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #656d76;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            font-size: 1rem;
+            color: #656d76;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .nav {
+            background-color: #f6f8fa;
+            border-bottom: 1px solid #d1d9e0;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #24292f;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: #ffffff;
+            text-decoration: none;
+        }
+
+        .section {
+            padding: 3rem 0;
+            border-bottom: 1px solid #d1d9e0;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #24292f;
+        }
+
+        .section-description {
+            text-align: center;
+            color: #656d76;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .chart-wrapper {
+            background: #ffffff;
+            border: 1px solid #d1d9e0;
+            border-radius: 6px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .model-toggle {
+            background: #0969da;
+            color: white;
+            border: 1px solid #0969da;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .model-toggle:hover {
+            background: #0860ca;
+        }
+
+        .model-toggle.inactive {
+            background: #8c959f;
+            border-color: #8c959f;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 500px;
+            margin: 1rem 0;
+        }
+
+        .insights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .insight-card {
+            background: #f6f8fa;
+            border: 1px solid #d1d9e0;
+            border-radius: 6px;
+            padding: 1.5rem;
+        }
+
+        .insight-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #24292f;
+        }
+
+        .insight-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0969da;
+        }
+
+        .footer {
+            background-color: #f6f8fa;
+            border-top: 1px solid #d1d9e0;
+            padding: 2rem 0;
+            text-align: center;
+            color: #656d76;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div style="text-align: right; margin-bottom: 1rem;">
+                <a href="#" class="website-link" style="color: #0969da; text-decoration: none; font-weight: 500;">
+                    🌐 View Full Research →
+                </a>
+            </div>
+            <h1>DuTCh SpaCE: Spatial Reasoning in Multimodal LLMs</h1>
+            <p class="subtitle">Chain-of-Thought Distillation and Monte Carlo Tree Search for Dutch Facade-Element Detection</p>
+            
+            <div class="abstract-section">
+                <div class="abstract-toggle" onclick="toggleAbstract()" style="cursor: pointer; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                    <h3 style="margin: 0; color: #24292f;">Abstract</h3>
+                    <span id="abstract-arrow" style="margin-left: 0.5rem; font-size: 1.2em; transition: transform 0.3s ease;">▼</span>
+                </div>
+                
+                <div id="abstract-content" class="abstract-box" style="background: #f6f8fa; border: 1px solid #d1d9e0; border-radius: 6px; padding: 1.5rem; margin: 0; text-align: left; display: none;">
+                    <p style="line-height: 1.6; color: #24292f; margin-bottom: 1rem;">
+                        <strong>Overview:</strong> Exploring spatial reasoning capabilities in state-of-the-art Multimodal LLMs for Dutch building renovation, introducing the DuTCh SpaCE framework to enhance reasoning and reduce hallucinations.
+                    </p>
+                    <p style="line-height: 1.6; color: #24292f; margin-bottom: 0;">
+                        In this exploratory work, we investigate the spatial reasoning capabilities of state-of-the-art Multimodal Large Language Models (MLLMs) in the context of building renovation. We evaluate models with different capacities, including GPT-4o, Qwen, Mulberry, and SpatialRGPT on a few-shot dataset of Dutch residential buildings, assessing their performance in visual reasoning tasks. To this end, we propose <strong>DuTCh Space</strong>, a novel application of Chain-of-Thought Distillation consisting of a Dual-Teacher Framework that leverages both step-by-step rationales and scene graph description augmentation to guide and assess student models' performance on spatial reasoning. This structured supervision enables iterative refinement of spatial reasoning through domain-task decomposition and scene understanding. Additionally, we integrate Monte Carlo Tree Search at inference time to improve reasoning-path selection under visual uncertainty. By combining distillation and MCTS, we observe a measurable reduction in hallucinations, with models generating more grounded and verifiable predictions. Our findings demonstrate that reasoning-enhanced models can compensate for limited visual grounding even without scene graph augmentation, offering a scalable path toward spatially-aware MLLMs in low-resource, domain-specific settings.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="achievements-section" style="margin: 2rem 0;">
+                <h3 style="text-align: center; color: #24292f; margin-bottom: 1.5rem;">🏆 Key Achievements</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                    <div class="achievement-card" style="background: linear-gradient(135deg, #0969da, #0860ca); color: white; padding: 1.5rem; border-radius: 8px; text-align: center;">
+                        <h4 style="margin-bottom: 0.5rem;">Chain-of-Thought Distillation</h4>
+                        <p style="margin: 0; opacity: 0.9;">Novel dual-teacher framework with step-by-step rationales and scene graph augmentation</p>
+                    </div>
+                    <div class="achievement-card" style="background: linear-gradient(135deg, #28a745, #20c997); color: white; padding: 1.5rem; border-radius: 8px; text-align: center;">
+                        <h4 style="margin-bottom: 0.5rem;">Reduced Hallucinations</h4>
+                        <p style="margin: 0; opacity: 0.9;">Measurable reduction in false predictions through structured supervision</p>
+                    </div>
+                    <div class="achievement-card" style="background: linear-gradient(135deg, #fd7e14, #e55a4e); color: white; padding: 1.5rem; border-radius: 8px; text-align: center;">
+                        <h4 style="margin-bottom: 0.5rem;">MCTS Integration</h4>
+                        <p style="margin: 0; opacity: 0.9;">Monte Carlo Tree Search for improved reasoning-path selection</p>
+                    </div>
+                    <div class="achievement-card" style="background: linear-gradient(135deg, #6f42c1, #e83e8c); color: white; padding: 1.5rem; border-radius: 8px; text-align: center;">
+                        <h4 style="margin-bottom: 0.5rem;">Scalable Framework</h4>
+                        <p style="margin: 0; opacity: 0.9;">Domain-specific spatial reasoning without extensive visual grounding</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="description">
+                <strong>Key Achievement:</strong> Our Mulberry-Qwen DCoT and DCoT+Scene approaches demonstrate competitive performance across multiple metrics, 
+                showcasing the effectiveness of Chain-of-Thought distillation in spatial reasoning tasks for architectural feature detection.
+            </p>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#f1-score" class="nav-link">F1-Score</a>
+            <a href="#accuracy" class="nav-link">Accuracy</a>
+            <a href="#precision" class="nav-link">Precision</a>
+            <a href="#recall" class="nav-link">Recall</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- F1-Score Section -->
+        <section id="f1-score" class="section">
+            <div class="container">
+                <h2 class="section-title">F1-Score Performance</h2>
+                <p class="section-description">
+                    F1-Score provides the harmonic mean of precision and recall. <strong>Our Mulberry-Qwen DCoT approach achieves strong performance</strong> across multiple architectural features, demonstrating the effectiveness of Chain-of-Thought distillation in spatial reasoning tasks.
+                </p>
+                <div class="chart-wrapper">
+                    <div class="controls">
+                        <button class="model-toggle f1-toggle" data-model="0">Mulberry-Qwen DCoT</button>
+                        <button class="model-toggle f1-toggle" data-model="1">Mulberry-Qwen DCoT+Scene</button>
+                        <button class="model-toggle f1-toggle" data-model="2">Qwen2-VL-7B Base</button>
+                        <button class="model-toggle f1-toggle" data-model="3">GPT-4o Base</button>
+                        <button class="model-toggle f1-toggle" data-model="4">SpatialRGPT Base</button>
+                        <button class="model-toggle f1-toggle" data-model="5">SpatialRGPT Bbox</button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="f1Chart"></canvas>
+                    </div>
+                    <div class="insights">
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">🎯 Our F1 Achievement</div>
+                            <div class="insight-value">0.438</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Balconies Detection</div>
+                        </div>
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">🔄 DCoT Consistency</div>
+                            <div class="insight-value">Identical</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">DCoT = DCoT+Scene</div>
+                        </div>
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">📊 Strong Features</div>
+                            <div class="insight-value">4 Top-Tier</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Vegetation, Balconies, Dormers, Chimneys</div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-title">🏆 Best Overall</div>
+                            <div class="insight-value">GPT-4o</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">0.742 (Vegetation)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accuracy Section -->
+        <section id="accuracy" class="section">
+            <div class="container">
+                <h2 class="section-title">Accuracy Performance</h2>
+                <p class="section-description">
+                    Accuracy measures the proportion of correct predictions across all feature classifications. <strong>Our Mulberry-Qwen DCoT demonstrates excellent accuracy on key architectural features</strong>, particularly excelling in weep holes and balconies detection.
+                </p>
+                <div class="chart-wrapper">
+                    <div class="controls">
+                        <button class="model-toggle acc-toggle" data-model="0">Mulberry-Qwen DCoT</button>
+                        <button class="model-toggle acc-toggle" data-model="1">Mulberry-Qwen DCoT+Scene</button>
+                        <button class="model-toggle acc-toggle" data-model="2">Qwen2-VL-7B Base</button>
+                        <button class="model-toggle acc-toggle" data-model="3">GPT-4o Base</button>
+                        <button class="model-toggle acc-toggle" data-model="4">SpatialRGPT Base</button>
+                        <button class="model-toggle acc-toggle" data-model="5">SpatialRGPT Bbox</button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="accuracyChart"></canvas>
+                    </div>
+                    <div class="insights">
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">🎯 Our Accuracy Peak</div>
+                            <div class="insight-value">0.778</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Weep holes & Balconies</div>
+                        </div>
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">🏠 Architectural Excellence</div>
+                            <div class="insight-value">0.667</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Chimneys & Vegetation</div>
+                        </div>
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">💪 Robust Detection</div>
+                            <div class="insight-value">0.556</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Facade & Dormers</div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-title">📈 Scene Graph Impact</div>
+                            <div class="insight-value">No Change</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">DCoT already optimal</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Precision Section -->
+        <section id="precision" class="section">
+            <div class="container">
+                <h2 class="section-title">Precision Performance</h2>
+                <p class="section-description">
+                    Precision measures the proportion of true positive predictions among all positive predictions, indicating model specificity. <strong>Our DCoT approach shows competitive precision</strong>, effectively minimizing false positives in architectural feature detection.
+                </p>
+                <div class="chart-wrapper">
+                    <div class="controls">
+                        <button class="model-toggle prec-toggle" data-model="0">Mulberry-Qwen DCoT</button>
+                        <button class="model-toggle prec-toggle" data-model="1">Mulberry-Qwen DCoT+Scene</button>
+                        <button class="model-toggle prec-toggle" data-model="2">Qwen2-VL-7B Base</button>
+                        <button class="model-toggle prec-toggle" data-model="3">GPT-4o Base</button>
+                        <button class="model-toggle prec-toggle" data-model="4">SpatialRGPT Base</button>
+                        <button class="model-toggle prec-toggle" data-model="5">SpatialRGPT Bbox</button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="precisionChart"></canvas>
+                    </div>
+                    <div class="insights">
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">🎯 Our Precision Peak</div>
+                            <div class="insight-value">0.389</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Balconies Detection</div>
+                        </div>
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">🏗️ Low False Positives</div>
+                            <div class="insight-value">0.333</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Vegetation Growth</div>
+                        </div>
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">🔍 Reliable Features</div>
+                            <div class="insight-value">0.222</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Chimneys Detection</div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-title">⚖️ Precision-Recall Balance</div>
+                            <div class="insight-value">Stable</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Consistent across features</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recall Section -->
+        <section id="recall" class="section">
+            <div class="container">
+                <h2 class="section-title">Recall Performance</h2>
+                <p class="section-description">
+                    Recall measures the proportion of true positive predictions among all actual positive cases, indicating model sensitivity. <strong>Our DCoT approach maintains consistent recall performance</strong>, successfully capturing architectural features with balanced sensitivity across the dataset.
+                </p>
+                <div class="chart-wrapper">
+                    <div class="controls">
+                        <button class="model-toggle rec-toggle" data-model="0">Mulberry-Qwen DCoT</button>
+                        <button class="model-toggle rec-toggle" data-model="1">Mulberry-Qwen DCoT+Scene</button>
+                        <button class="model-toggle rec-toggle" data-model="2">Qwen2-VL-7B Base</button>
+                        <button class="model-toggle rec-toggle" data-model="3">GPT-4o Base</button>
+                        <button class="model-toggle rec-toggle" data-model="4">SpatialRGPT Base</button>
+                        <button class="model-toggle rec-toggle" data-model="5">SpatialRGPT Bbox</button>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="recallChart"></canvas>
+                    </div>
+                    <div class="insights">
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">🎯 Our Recall Peak</div>
+                            <div class="insight-value">0.500</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Vegetation & Balconies</div>
+                        </div>
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">📊 Consistent Pattern</div>
+                            <div class="insight-value">0.333</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Most features stable</div>
+                        </div>
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">🔄 DCoT Reliability</div>
+                            <div class="insight-value">Identical</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">DCoT = DCoT+Scene</div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-title">📈 Sensitivity Balance</div>
+                            <div class="insight-value">Stable</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Good feature capture</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p><strong>DuTCh SpaCE:</strong> Spatial Reasoning in Multimodal LLMs via CoT Distillation and Monte Carlo Tree Search | 
+            Chain-of-Thought Distillation for Dutch Facade-Element Detection Research</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data definitions
+        const features = [
+            'Weep holes', 'Crawling space', 'Chimneys', 'Pitched roof',
+            'Roof ventilation', 'Facade ventilation', 'Window ventilation',
+            'Dormers', 'Roof windows', 'Attics living space',
+            'Vegetation growth', 'Balconies', 'PV panels'
+        ];
+
+        const dataConfigs = {
+            f1: {
+                data: [
+                    [0.292, 0.167, 0.267, 0, 0.121, 0.238, 0.205, 0.238, 0.167, 0.167, 0.400, 0.438, 0.238],
+                    [0.292, 0.167, 0.267, 0, 0.121, 0.238, 0.205, 0.238, 0.167, 0.167, 0.400, 0.438, 0.238],
+                    [0.239, 0.218, 0.205, 0, 0.134, 0.210, 0.283, 0.173, 0.202, 0.103, 0.260, 0.275, 0.292],
+                    [0.300, 0.330, 0.267, 0.438, 0.262, 0.177, 0.207, 0.238, 0.177, 0.439, 0.742, 0.679, 0.590],
+                    [0.097, 0.211, 0.181, 0.387, 0.220, 0.111, 0.184, 0.123, 0.179, 0.174, 0.102, 0.098, 0.154],
+                    [0.176, 0.184, 0.263, 0.547, 0.156, 0.183, 0.206, 0.220, 0.175, 0.211, 0.267, 0.369, 0.152]
+                ],
+                max: 0.8
+            },
+            accuracy: {
+                data: [
+                    [0.778, 0.333, 0.667, 0, 0.222, 0.556, 0.444, 0.556, 0.333, 0.333, 0.667, 0.778, 0.556],
+                    [0.778, 0.333, 0.667, 0, 0.222, 0.556, 0.444, 0.556, 0.333, 0.333, 0.667, 0.778, 0.556],
+                    [0.556, 0.322, 0.456, 0, 0.200, 0.422, 0.456, 0.356, 0.311, 0.189, 0.489, 0.556, 0.511],
+                    [0.756, 0.433, 0.667, 0.778, 0.333, 0.322, 0.444, 0.556, 0.244, 0.622, 0.767, 0.778, 0.667],
+                    [0.178, 0.356, 0.400, 0.456, 0.411, 0.200, 0.300, 0.222, 0.322, 0.356, 0.144, 0.144, 0.244],
+                    [0.433, 0.344, 0.655, 0.588, 0.311, 0.388, 0.411, 0.500, 0.355, 0.466, 0.388, 0.655, 0.300]
+                ],
+                max: 1.0
+            },
+            precision: {
+                data: [
+                    [0.259, 0.111, 0.222, 0, 0.074, 0.185, 0.148, 0.185, 0.111, 0.111, 0.333, 0.389, 0.185],
+                    [0.259, 0.111, 0.222, 0, 0.074, 0.185, 0.148, 0.185, 0.111, 0.111, 0.333, 0.389, 0.185],
+                    [0.237, 0.208, 0.182, 0, 0.108, 0.179, 0.272, 0.143, 0.149, 0.070, 0.239, 0.272, 0.292],
+                    [0.280, 0.424, 0.222, 0.500, 0.222, 0.163, 0.150, 0.185, 0.165, 0.426, 0.746, 0.679, 0.542],
+                    [0.064, 0.173, 0.147, 0.400, 0.167, 0.074, 0.153, 0.084, 0.129, 0.140, 0.070, 0.073, 0.131],
+                    [0.147, 0.145, 0.220, 0.550, 0.105, 0.130, 0.168, 0.168, 0.119, 0.157, 0.191, 0.319, 0.130]
+                ],
+                max: 0.8
+            },
+            recall: {
+                data: [
+                    [0.333, 0.333, 0.333, 0, 0.333, 0.333, 0.333, 0.333, 0.333, 0.333, 0.500, 0.500, 0.333],
+                    [0.333, 0.333, 0.333, 0, 0.333, 0.333, 0.333, 0.333, 0.333, 0.333, 0.500, 0.500, 0.333],
+                    [0.295, 0.322, 0.261, 0, 0.239, 0.307, 0.369, 0.267, 0.344, 0.211, 0.311, 0.288, 0.351],
+                    [0.324, 0.433, 0.333, 0.389, 0.417, 0.193, 0.333, 0.333, 0.217, 0.507, 0.758, 0.679, 0.667],
+                    [0.329, 0.344, 0.328, 0.544, 0.333, 0.322, 0.344, 0.327, 0.333, 0.333, 0.472, 0.479, 0.344],
+                    [0.328, 0.344, 0.327, 0.544, 0.333, 0.322, 0.344, 0.326, 0.333, 0.333, 0.472, 0.478, 0.344]
+                ],
+                max: 0.8
+            }
+        };
+
+        const modelLabels = [
+            'Mulberry-Qwen DCoT',
+            'Mulberry-Qwen DCoT+Scene',
+            'Qwen2-VL-7B Base',
+            'GPT-4o Base',
+            'SpatialRGPT Base',
+            'SpatialRGPT Bbox'
+        ];
+
+        const modelColors = [
+            'rgb(54, 162, 235)',
+            'rgb(75, 192, 192)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 99, 132)',
+            'rgb(153, 102, 255)',
+            'rgb(139, 69, 19)'
+        ];
+
+        // Chart creation function
+        function createChart(canvasId, dataKey, toggleClass) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            const config = dataConfigs[dataKey];
+            
+            const datasets = config.data.map((data, index) => ({
+                label: modelLabels[index],
+                data: data,
+                borderColor: modelColors[index],
+                backgroundColor: modelColors[index].replace('rgb', 'rgba').replace(')', ', 0.2)'),
+                pointBackgroundColor: modelColors[index],
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: modelColors[index],
+                borderWidth: 2,
+                pointRadius: 4,
+                borderDash: index === 1 ? [5, 5] : []
+            }));
+
+            const chart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: features,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    elements: {
+                        line: {
+                            borderWidth: 2
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: config.max,
+                            ticks: {
+                                stepSize: 0.2,
+                                font: {
+                                    size: 10
+                                }
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 10,
+                                    weight: 'bold'
+                                },
+                                color: '#24292f'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                usePointStyle: true,
+                                padding: 15,
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.raw.toFixed(3);
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+
+            // Add toggle functionality
+            const toggleButtons = document.querySelectorAll(`.${toggleClass}`);
+            toggleButtons.forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    const dataset = chart.data.datasets[index];
+                    dataset.hidden = !dataset.hidden;
+                    button.classList.toggle('inactive', dataset.hidden);
+                    chart.update();
+                });
+            });
+
+            return chart;
+        }
+
+        // Abstract toggle functionality
+        function toggleAbstract() {
+            const content = document.getElementById('abstract-content');
+            const arrow = document.getElementById('abstract-arrow');
+            
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+                arrow.style.transform = 'rotate(180deg)';
+            } else {
+                content.style.display = 'none';
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Initialize all charts when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof Chart !== 'undefined') {
+                createChart('f1Chart', 'f1', 'f1-toggle');
+                createChart('accuracyChart', 'accuracy', 'acc-toggle');
+                createChart('precisionChart', 'precision', 'prec-toggle');
+                createChart('recallChart', 'recall', 'rec-toggle');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
