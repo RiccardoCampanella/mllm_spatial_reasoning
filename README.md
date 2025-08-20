@@ -7,7 +7,7 @@
 
 ## 🎯 Interactive Visualization
 
-**[📊 View Live Results →](https://your-username.github.io/dutch-space)**
+**[📊 View Live Results →](https://riccardocampanella.github.io/mllm_spatial_reasoning/#)**
 
 This repository contains interactive radar charts showcasing the performance of our **DuTCh SpaCE** framework across 13 architectural features using multiple evaluation metrics.
 

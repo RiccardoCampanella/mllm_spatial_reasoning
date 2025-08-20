@@ -378,6 +378,32 @@
         .container {
             animation: fadeIn 0.8s ease-out;
         }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            font-size: 0.9rem;
+            color: #555;
+            text-align: center;
+            border-top: 1px solid #e1e1e1;
+        }
+
+        .footer .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 15px;
+        }
+
+        .footer strong {
+        color: #222;
+        }
+
+        .footer .copyright {
+        margin-top: 8px;
+        font-size: 0.8rem;
+        color: #777;
+        }
+
     </style>
 </head>
 <body>
@@ -400,7 +426,7 @@
     <header class="header">
         <div class="container">
             <div style="text-align: right; margin-bottom: 1rem;">
-                <a href="#" class="website-link" style="color: #0969da; text-decoration: none; font-weight: 500;">
+                <a href="https://riccardocampanella.github.io/rc-homepage/portfolio/a_ab_spatial_reasoning/" class="website-link" style="color: #0969da; text-decoration: none; font-weight: 500;">
                     🌐 View Full Research →
                 </a>
             </div>
@@ -421,10 +447,6 @@
             </div>
             
             <div class="achievements-section" style="margin: 2rem 0;">
-                <p class="description">
-                    <strong>Key Achievement:</strong> Our Mulberry-Qwen DCoT and DCoT+Scene approaches demonstrate competitive performance across multiple metrics, 
-                    showcasing the effectiveness of Chain-of-Thought distillation in spatial reasoning tasks for architectural feature detection.
-                </p>
                 <h3 style="text-align: center; color: #24292f; margin-bottom: 1.5rem;">🏆 Key Achievements</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
                     <div class="achievement-card" style="background: linear-gradient(135deg, #0969da, #0860ca); color: white; padding: 1.5rem; border-radius: 8px; text-align: center;">
@@ -451,7 +473,7 @@
                 <p style="color: #656d76; margin-bottom: 1.5rem;">
                     Our novel dual-teacher framework combining Chain-of-Thought distillation with Monte Carlo Tree Search for enhanced spatial reasoning in architectural feature detection.
                 </p>
-                <img src="assets/dutch-space.jpeg" 
+                <img src="https://raw.githubusercontent.com/riccardocampanella/dutch-space/main/assets/dutch-space.jpeg" 
                      alt="DuTCh SpaCE Framework Architecture" 
                      class="framework-image"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -613,7 +635,7 @@
                         </div>
                     </div>
                     <div class="chart-container">
-                        <canvas id="f1Chart"></canvas>
+                        <canvas id="recallChart"></canvas>
                     </div>
                     <div class="insights">
                         <div class="insight-card mulberry-highlight">
@@ -700,10 +722,19 @@
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <p><strong>DuTCh SpaCE:</strong> Spatial Reasoning in Multimodal LLMs via CoT Distillation and Monte Carlo Tree Search | 
-            Chain-of-Thought Distillation for Dutch Facade-Element Detection Research</p>
-        </div>
+    <div class="container">
+        <p>
+            <strong>DuTCh SpaCE</strong> — Spatial Reasoning in Multimodal LLMs via CoT Distillation 
+            and Monte Carlo Tree Search for Dutch Facade-Element Detection: An Exploratory Study
+        </p>
+        <p>
+            MSc Artificial Intelligence Thesis, Utrecht University — Submitted July 2025 · Defended 7 Aug 2025  
+            Produced in collaboration with <strong>TNO (Netherlands Organisation for Applied Scientific Research)</strong>
+        </p>
+        <p class="copyright">
+            © 2025 Riccardo Campanella. All rights reserved.
+        </p>
+    </div>
     </footer>
 
     <script>
