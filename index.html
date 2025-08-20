@@ -1,4 +1,4 @@
-        .website-link:hover {
+.website-link:hover {
             text-decoration: underline !important;
         }
 
@@ -10,8 +10,181 @@
             border: 2px solid #0969da !important;
             background: rgba(9, 105, 218, 0.05) !important;
         }
-        
-<!DOCTYPE html>
+
+        .floating-social {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            background: linear-gradient(135deg, #0969da, #0860ca);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(9, 105, 218, 0.4);
+            cursor: pointer;
+        }
+
+        .floating-btn:hover {
+            background: linear-gradient(135deg, #0860ca, #0969da);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(9, 105, 218, 0.6);
+            text-decoration: none;
+            color: white;
+        }
+
+        .floating-btn.linkedin {
+            background: linear-gradient(135deg, #0077b5, #005885);
+        }
+
+        .floating-btn.linkedin:hover {
+            background: linear-gradient(135deg, #005885, #0077b5);
+        }
+
+        .floating-btn.avatar {
+            background: none;
+            border: 3px solid #0969da;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .floating-btn.avatar:hover {
+            border-color: #0860ca;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(9, 105, 218, 0.6);
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .framework-section {
+            background: #f6f8fa;
+            border: 1px solid #d1d9e0;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .framework-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #24292f;
+            margin-bottom: 1rem;
+        }
+
+        .framework-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin: 1rem 0;
+        }
+
+        .controls-section {
+            margin-bottom: 2rem;
+        }
+
+        .controls-container {
+            background: linear-gradient(135deg, #f6f8fa 0%, #e1e7f0 100%);
+            border: 2px solid #d1d9e0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .controls-header {
+            background: #0969da;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(9, 105, 218, 0.3);
+        }
+
+        .controls-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #24292f;
+            font-weight: 600;
+        }
+
+        .model-selector {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .select-all-btn {
+            background: #28a745;
+            color: white;
+            border: 1px solid #28a745;
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            margin-right: 1rem;
+        }
+
+        .select-all-btn:hover {
+            background: #218838;
+        }
+
+        .deselect-all-btn {
+            background: #dc3545;
+            color: white;
+            border: 1px solid #dc3545;
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .deselect-all-btn:hover {
+            background: #c82333;
+        }
+
+        .interaction-note {
+            text-align: center;
+            color: #656d76;
+            font-size: 0.9em;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: #f6f8fa;
+            border-radius: 6px;
+            border-left: 4px solid #0969da;
+        }
+
+        @media (max-width: 768px) {
+            .social-links {
+                position: static;
+                transform: none;
+                flex-direction: row;
+                justify-content: center;
+                margin: 1rem 0;
+            }
+        }<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -212,7 +385,7 @@
     </style>
 </head>
 <body>
-    <header class="header">
+
         <div class="container">
             <div style="text-align: right; margin-bottom: 1rem;">
                 <a href="#" class="website-link" style="color: #0969da; text-decoration: none; font-weight: 500;">
@@ -260,6 +433,21 @@
                 </div>
             </div>
             
+            <div class="framework-section">
+                <h3 class="framework-title">🏗️ DuTCh SpaCE Framework Architecture</h3>
+                <p style="color: #656d76; margin-bottom: 1.5rem;">
+                    Our novel dual-teacher framework combining Chain-of-Thought distillation with Monte Carlo Tree Search for enhanced spatial reasoning in architectural feature detection.
+                </p>
+                <img src="https://raw.githubusercontent.com/riccardocampanella/dutch-space/main/assets/framework-diagram.png" 
+                     alt="DuTCh SpaCE Framework Architecture" 
+                     class="framework-image"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div style="display: none; padding: 2rem; background: #f8f9fa; border: 2px dashed #d1d9e0; border-radius: 8px; color: #656d76;">
+                    📊 Framework diagram will be displayed here<br>
+                    <small>Add your framework image as: <code>assets/framework-diagram.png</code></small>
+                </div>
+            </div>
+            
             <p class="description">
                 <strong>Key Achievement:</strong> Our Mulberry-Qwen DCoT and DCoT+Scene approaches demonstrate competitive performance across multiple metrics, 
                 showcasing the effectiveness of Chain-of-Thought distillation in spatial reasoning tasks for architectural feature detection.
@@ -285,13 +473,23 @@
                     F1-Score provides the harmonic mean of precision and recall. <strong>Our Mulberry-Qwen DCoT approach achieves strong performance</strong> across multiple architectural features, demonstrating the effectiveness of Chain-of-Thought distillation in spatial reasoning tasks.
                 </p>
                 <div class="chart-wrapper">
-                    <div class="controls">
-                        <button class="model-toggle f1-toggle" data-model="0">Mulberry-Qwen DCoT</button>
-                        <button class="model-toggle f1-toggle" data-model="1">Mulberry-Qwen DCoT+Scene</button>
-                        <button class="model-toggle f1-toggle" data-model="2">Qwen2-VL-7B Base</button>
-                        <button class="model-toggle f1-toggle" data-model="3">GPT-4o Base</button>
-                        <button class="model-toggle f1-toggle" data-model="4">SpatialRGPT Base</button>
-                        <button class="model-toggle f1-toggle" data-model="5">SpatialRGPT Bbox</button>
+                    <div class="controls-section">
+                        <div class="controls-container">
+                            <div class="controls-header">
+                                📊 SELECT MODELS
+                            </div>
+                            <div class="interaction-note">
+                                💡 <strong>Tip:</strong> Click on the model buttons below to show/hide specific models in the chart.
+                            </div>
+                            <div class="controls">
+                                <button class="model-toggle f1-toggle" data-model="0">Mulberry-Qwen DCoT</button>
+                                <button class="model-toggle f1-toggle" data-model="1">Mulberry-Qwen DCoT+Scene</button>
+                                <button class="model-toggle f1-toggle" data-model="2">Qwen2-VL-7B Base</button>
+                                <button class="model-toggle f1-toggle" data-model="3">GPT-4o Base</button>
+                                <button class="model-toggle f1-toggle" data-model="4">SpatialRGPT Base</button>
+                                <button class="model-toggle f1-toggle" data-model="5">SpatialRGPT Bbox</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="chart-container">
                         <canvas id="f1Chart"></canvas>
@@ -330,13 +528,23 @@
                     Accuracy measures the proportion of correct predictions across all feature classifications. <strong>Our Mulberry-Qwen DCoT demonstrates excellent accuracy on key architectural features</strong>, particularly excelling in weep holes and balconies detection.
                 </p>
                 <div class="chart-wrapper">
-                    <div class="controls">
-                        <button class="model-toggle acc-toggle" data-model="0">Mulberry-Qwen DCoT</button>
-                        <button class="model-toggle acc-toggle" data-model="1">Mulberry-Qwen DCoT+Scene</button>
-                        <button class="model-toggle acc-toggle" data-model="2">Qwen2-VL-7B Base</button>
-                        <button class="model-toggle acc-toggle" data-model="3">GPT-4o Base</button>
-                        <button class="model-toggle acc-toggle" data-model="4">SpatialRGPT Base</button>
-                        <button class="model-toggle acc-toggle" data-model="5">SpatialRGPT Bbox</button>
+                    <div class="controls-section">
+                        <div class="controls-container">
+                            <div class="controls-header">
+                                📊 SELECT MODELS
+                            </div>
+                            <div class="interaction-note">
+                                💡 <strong>Tip:</strong> Click on the model buttons below to show/hide specific models in the chart.
+                            </div>
+                            <div class="controls">
+                                <button class="model-toggle acc-toggle" data-model="0">Mulberry-Qwen DCoT</button>
+                                <button class="model-toggle acc-toggle" data-model="1">Mulberry-Qwen DCoT+Scene</button>
+                                <button class="model-toggle acc-toggle" data-model="2">Qwen2-VL-7B Base</button>
+                                <button class="model-toggle acc-toggle" data-model="3">GPT-4o Base</button>
+                                <button class="model-toggle acc-toggle" data-model="4">SpatialRGPT Base</button>
+                                <button class="model-toggle acc-toggle" data-model="5">SpatialRGPT Bbox</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="chart-container">
                         <canvas id="accuracyChart"></canvas>
@@ -375,13 +583,23 @@
                     Precision measures the proportion of true positive predictions among all positive predictions, indicating model specificity. <strong>Our DCoT approach shows competitive precision</strong>, effectively minimizing false positives in architectural feature detection.
                 </p>
                 <div class="chart-wrapper">
-                    <div class="controls">
-                        <button class="model-toggle prec-toggle" data-model="0">Mulberry-Qwen DCoT</button>
-                        <button class="model-toggle prec-toggle" data-model="1">Mulberry-Qwen DCoT+Scene</button>
-                        <button class="model-toggle prec-toggle" data-model="2">Qwen2-VL-7B Base</button>
-                        <button class="model-toggle prec-toggle" data-model="3">GPT-4o Base</button>
-                        <button class="model-toggle prec-toggle" data-model="4">SpatialRGPT Base</button>
-                        <button class="model-toggle prec-toggle" data-model="5">SpatialRGPT Bbox</button>
+                    <div class="controls-section">
+                        <div class="controls-container">
+                            <div class="controls-header">
+                                📊 SELECT MODELS
+                            </div>
+                            <div class="interaction-note">
+                                💡 <strong>Tip:</strong> Click on the model buttons below to show/hide specific models in the chart.
+                            </div>
+                            <div class="controls">
+                                <button class="model-toggle prec-toggle" data-model="0">Mulberry-Qwen DCoT</button>
+                                <button class="model-toggle prec-toggle" data-model="1">Mulberry-Qwen DCoT+Scene</button>
+                                <button class="model-toggle prec-toggle" data-model="2">Qwen2-VL-7B Base</button>
+                                <button class="model-toggle prec-toggle" data-model="3">GPT-4o Base</button>
+                                <button class="model-toggle prec-toggle" data-model="4">SpatialRGPT Base</button>
+                                <button class="model-toggle prec-toggle" data-model="5">SpatialRGPT Bbox</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="chart-container">
                         <canvas id="precisionChart"></canvas>
@@ -420,13 +638,23 @@
                     Recall measures the proportion of true positive predictions among all actual positive cases, indicating model sensitivity. <strong>Our DCoT approach maintains consistent recall performance</strong>, successfully capturing architectural features with balanced sensitivity across the dataset.
                 </p>
                 <div class="chart-wrapper">
-                    <div class="controls">
-                        <button class="model-toggle rec-toggle" data-model="0">Mulberry-Qwen DCoT</button>
-                        <button class="model-toggle rec-toggle" data-model="1">Mulberry-Qwen DCoT+Scene</button>
-                        <button class="model-toggle rec-toggle" data-model="2">Qwen2-VL-7B Base</button>
-                        <button class="model-toggle rec-toggle" data-model="3">GPT-4o Base</button>
-                        <button class="model-toggle rec-toggle" data-model="4">SpatialRGPT Base</button>
-                        <button class="model-toggle rec-toggle" data-model="5">SpatialRGPT Bbox</button>
+                    <div class="controls-section">
+                        <div class="controls-container">
+                            <div class="controls-header">
+                                📊 SELECT MODELS
+                            </div>
+                            <div class="interaction-note">
+                                💡 <strong>Tip:</strong> Click on the model buttons below to show/hide specific models in the chart.
+                            </div>
+                            <div class="controls">
+                                <button class="model-toggle rec-toggle" data-model="0">Mulberry-Qwen DCoT</button>
+                                <button class="model-toggle rec-toggle" data-model="1">Mulberry-Qwen DCoT+Scene</button>
+                                <button class="model-toggle rec-toggle" data-model="2">Qwen2-VL-7B Base</button>
+                                <button class="model-toggle rec-toggle" data-model="3">GPT-4o Base</button>
+                                <button class="model-toggle rec-toggle" data-model="4">SpatialRGPT Base</button>
+                                <button class="model-toggle rec-toggle" data-model="5">SpatialRGPT Bbox</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="chart-container">
                         <canvas id="recallChart"></canvas>
@@ -652,13 +880,50 @@
             }
         }
 
+        // Select/Deselect all models functionality
+        function selectAllModels(toggleClass) {
+            const buttons = document.querySelectorAll(`.${toggleClass}`);
+            buttons.forEach(button => {
+                const modelIndex = parseInt(button.dataset.model);
+                const chart = getChartByToggleClass(toggleClass);
+                if (chart && chart.data.datasets[modelIndex].hidden) {
+                    chart.data.datasets[modelIndex].hidden = false;
+                    button.classList.remove('inactive');
+                    chart.update();
+                }
+            });
+        }
+
+        function deselectAllModels(toggleClass) {
+            const buttons = document.querySelectorAll(`.${toggleClass}`);
+            buttons.forEach(button => {
+                const modelIndex = parseInt(button.dataset.model);
+                const chart = getChartByToggleClass(toggleClass);
+                if (chart && !chart.data.datasets[modelIndex].hidden) {
+                    chart.data.datasets[modelIndex].hidden = true;
+                    button.classList.add('inactive');
+                    chart.update();
+                }
+            });
+        }
+
+        function getChartByToggleClass(toggleClass) {
+            const chartMap = {
+                'f1-toggle': window.f1Chart,
+                'acc-toggle': window.accuracyChart,
+                'prec-toggle': window.precisionChart,
+                'rec-toggle': window.recallChart
+            };
+            return chartMap[toggleClass];
+        }
+
         // Initialize all charts when page loads
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof Chart !== 'undefined') {
-                createChart('f1Chart', 'f1', 'f1-toggle');
-                createChart('accuracyChart', 'accuracy', 'acc-toggle');
-                createChart('precisionChart', 'precision', 'prec-toggle');
-                createChart('recallChart', 'recall', 'rec-toggle');
+                window.f1Chart = createChart('f1Chart', 'f1', 'f1-toggle');
+                window.accuracyChart = createChart('accuracyChart', 'accuracy', 'acc-toggle');
+                window.precisionChart = createChart('precisionChart', 'precision', 'prec-toggle');
+                window.recallChart = createChart('recallChart', 'recall', 'rec-toggle');
             }
         });
 
