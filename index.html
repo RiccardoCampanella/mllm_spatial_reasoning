@@ -1,4 +1,25 @@
-.website-link:hover {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuTCh SpaCE: Spatial Reasoning in Multimodal LLMs</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #24292f;
+            background-color: #ffffff;
+        }
+
+        .website-link:hover {
             text-decoration: underline !important;
         }
 
@@ -19,7 +40,7 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            z-index: 1000;
+            z-index: 9999;
         }
 
         .floating-btn {
@@ -74,137 +95,6 @@
             object-fit: cover;
         }
 
-        .framework-section {
-            background: #f6f8fa;
-            border: 1px solid #d1d9e0;
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .framework-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #24292f;
-            margin-bottom: 1rem;
-        }
-
-        .framework-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            margin: 1rem 0;
-        }
-
-        .controls-section {
-            margin-bottom: 2rem;
-        }
-
-        .controls-container {
-            background: linear-gradient(135deg, #f6f8fa 0%, #e1e7f0 100%);
-            border: 2px solid #d1d9e0;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .controls-header {
-            background: #0969da;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 8px rgba(9, 105, 218, 0.3);
-        }
-
-        .controls-title {
-            text-align: center;
-            margin-bottom: 1rem;
-            color: #24292f;
-            font-weight: 600;
-        }
-
-        .model-selector {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-
-        .select-all-btn {
-            background: #28a745;
-            color: white;
-            border: 1px solid #28a745;
-            padding: 0.5rem 1.5rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            transition: all 0.2s;
-            margin-right: 1rem;
-        }
-
-        .select-all-btn:hover {
-            background: #218838;
-        }
-
-        .deselect-all-btn {
-            background: #dc3545;
-            color: white;
-            border: 1px solid #dc3545;
-            padding: 0.5rem 1.5rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            transition: all 0.2s;
-        }
-
-        .deselect-all-btn:hover {
-            background: #c82333;
-        }
-
-        .interaction-note {
-            text-align: center;
-            color: #656d76;
-            font-size: 0.9em;
-            margin-bottom: 1rem;
-            padding: 0.75rem;
-            background: #f6f8fa;
-            border-radius: 6px;
-            border-left: 4px solid #0969da;
-        }
-
-        @media (max-width: 768px) {
-            .social-links {
-                position: static;
-                transform: none;
-                flex-direction: row;
-                justify-content: center;
-                margin: 1rem 0;
-            }
-        }<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feature-wise Performance Analysis</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #24292f;
-            background-color: #ffffff;
-        }
-
         .header {
             background: linear-gradient(135deg, #f6f8fa 0%, #ffffff 100%);
             border-bottom: 1px solid #d1d9e0;
@@ -236,6 +126,30 @@
             color: #656d76;
             max-width: 800px;
             margin: 0 auto;
+        }
+
+        .framework-section {
+            background: #f6f8fa;
+            border: 1px solid #d1d9e0;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .framework-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #24292f;
+            margin-bottom: 1rem;
+        }
+
+        .framework-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin: 1rem 0;
         }
 
         .nav {
@@ -300,12 +214,50 @@
             margin-bottom: 2rem;
         }
 
+        .controls-section {
+            margin-bottom: 2rem;
+        }
+
+        .controls-container {
+            background: linear-gradient(135deg, #f6f8fa 0%, #e1e7f0 100%);
+            border: 2px solid #d1d9e0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .header-tip-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .controls-header-inline {
+            background: #0969da;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(9, 105, 218, 0.3);
+            white-space: nowrap;
+        }
+
+        .tip-inline {
+            color: #656d76;
+            font-size: 0.9em;
+            padding: 0.75rem;
+            background: #f6f8fa;
+            border-radius: 6px;
+            border-left: 4px solid #0969da;
+            flex: 1;
+        }
+
         .controls {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-bottom: 2rem;
         }
 
         .model-toggle {
@@ -360,6 +312,18 @@
             color: #0969da;
         }
 
+        .achievements-section {
+            margin: 2rem 0;
+        }
+
+        .achievement-card {
+            background: linear-gradient(135deg, #0969da, #0860ca);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
         .footer {
             background-color: #f6f8fa;
             border-top: 1px solid #d1d9e0;
@@ -381,11 +345,58 @@
             .chart-container {
                 height: 400px;
             }
+
+            .floating-social {
+                position: static;
+                transform: none;
+                flex-direction: row;
+                justify-content: center;
+                margin: 1rem 0;
+            }
+
+            .floating-btn {
+                width: 45px;
+                height: 45px;
+            }
+
+            .header-tip-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5rem;
+            }
+
+            .controls-header-inline {
+                text-align: center;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .container {
+            animation: fadeIn 0.8s ease-out;
         }
     </style>
 </head>
 <body>
+    <!-- Floating Social Buttons -->
+    <div class="floating-social">
+        <a href="https://linkedin.com/in/your-profile" class="floating-btn linkedin" target="_blank" title="LinkedIn Profile">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+        </a>
+        <a href="https://your-portfolio.com" class="floating-btn avatar" target="_blank" title="Personal Website">
+            <img src="https://via.placeholder.com/55x55/0969da/ffffff?text=RC" 
+                 alt="Profile Avatar" 
+                 class="avatar-img"
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTUiIGhlaWdodD0iNTUiIHZpZXdCb3g9IjAgMCA1NSA1NSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjcuNSIgY3k9IjI3LjUiIHI9IjI3LjUiIGZpbGw9IiMwOTY5ZGEiLz4KPHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5SQzwvdGV4dD4KPHN2Zz4K'">
+        </a>
+    </div>
 
+    <header class="header">
         <div class="container">
             <div style="text-align: right; margin-bottom: 1rem;">
                 <a href="#" class="website-link" style="color: #0969da; text-decoration: none; font-weight: 500;">
@@ -438,7 +449,7 @@
                 <p style="color: #656d76; margin-bottom: 1.5rem;">
                     Our novel dual-teacher framework combining Chain-of-Thought distillation with Monte Carlo Tree Search for enhanced spatial reasoning in architectural feature detection.
                 </p>
-                <img src="https://raw.githubusercontent.com/riccardocampanella/dutch-space/main/assets/framework-diagram.png" 
+                <img src="https://raw.githubusercontent.com/riccardocampanella/mllm_spatial_reasoning/dutch-space.jpeg" 
                      alt="DuTCh SpaCE Framework Architecture" 
                      class="framework-image"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -457,14 +468,71 @@
 
     <nav class="nav">
         <div class="nav-container">
-            <a href="#f1-score" class="nav-link">F1-Score</a>
             <a href="#accuracy" class="nav-link">Accuracy</a>
-            <a href="#precision" class="nav-link">Precision</a>
+            <a href="#f1-score" class="nav-link">F1-Score</a>
             <a href="#recall" class="nav-link">Recall</a>
+            <a href="#precision" class="nav-link">Precision</a>
         </div>
     </nav>
 
     <main>
+        <!-- Accuracy Section -->
+        <section id="accuracy" class="section">
+            <div class="container">
+                <h2 class="section-title">Accuracy Performance</h2>
+                <p class="section-description">
+                    Accuracy measures the proportion of correct predictions across all feature classifications. <strong>Our Mulberry-Qwen DCoT demonstrates excellent accuracy on key architectural features</strong>, particularly excelling in weep holes and balconies detection.
+                </p>
+                <div class="chart-wrapper">
+                    <div class="controls-section">
+                        <div class="controls-container">
+                            <div class="header-tip-row">
+                                <div class="controls-header-inline">
+                                    📊 SELECT MODELS
+                                </div>
+                                <div class="tip-inline">
+                                    💡 <strong>Tip:</strong> Click on the model buttons below to show/hide specific models in the chart.
+                                </div>
+                            </div>
+                            <div class="controls">
+                                <button class="model-toggle acc-toggle" data-model="0">Mulberry-Qwen DCoT</button>
+                                <button class="model-toggle acc-toggle" data-model="1">Mulberry-Qwen DCoT+Scene</button>
+                                <button class="model-toggle acc-toggle" data-model="2">Qwen2-VL-7B Base</button>
+                                <button class="model-toggle acc-toggle" data-model="3">GPT-4o Base</button>
+                                <button class="model-toggle acc-toggle" data-model="4">SpatialRGPT Base</button>
+                                <button class="model-toggle acc-toggle" data-model="5">SpatialRGPT Bbox</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="accuracyChart"></canvas>
+                    </div>
+                    <div class="insights">
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">🎯 Our Recall Peak</div>
+                            <div class="insight-value">0.500</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Vegetation & Balconies</div>
+                        </div>
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">📊 Consistent Pattern</div>
+                            <div class="insight-value">0.333</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Most features stable</div>
+                        </div>
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">🔄 DCoT Reliability</div>
+                            <div class="insight-value">Identical</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">DCoT = DCoT+Scene</div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-title">📈 Sensitivity Balance</div>
+                            <div class="insight-value">Stable</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Good feature capture</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- F1-Score Section -->
         <section id="f1-score" class="section">
             <div class="container">
@@ -475,11 +543,13 @@
                 <div class="chart-wrapper">
                     <div class="controls-section">
                         <div class="controls-container">
-                            <div class="controls-header">
-                                📊 SELECT MODELS
-                            </div>
-                            <div class="interaction-note">
-                                💡 <strong>Tip:</strong> Click on the model buttons below to show/hide specific models in the chart.
+                            <div class="header-tip-row">
+                                <div class="controls-header-inline">
+                                    📊 SELECT MODELS
+                                </div>
+                                <div class="tip-inline">
+                                    💡 <strong>Tip:</strong> Click on the model buttons below to show/hide specific models in the chart.
+                                </div>
                             </div>
                             <div class="controls">
                                 <button class="model-toggle f1-toggle" data-model="0">Mulberry-Qwen DCoT</button>
@@ -501,123 +571,13 @@
                             <div style="font-size: 0.8em; margin-top: 0.25rem;">Balconies Detection</div>
                         </div>
                         <div class="insight-card mulberry-highlight">
-                            <div class="insight-title">🔄 DCoT Consistency</div>
-                            <div class="insight-value">Identical</div>
-                            <div style="font-size: 0.8em; margin-top: 0.25rem;">DCoT = DCoT+Scene</div>
-                        </div>
-                        <div class="insight-card mulberry-highlight">
-                            <div class="insight-title">📊 Strong Features</div>
-                            <div class="insight-value">4 Top-Tier</div>
-                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Vegetation, Balconies, Dormers, Chimneys</div>
-                        </div>
-                        <div class="insight-card">
-                            <div class="insight-title">🏆 Best Overall</div>
-                            <div class="insight-value">GPT-4o</div>
-                            <div style="font-size: 0.8em; margin-top: 0.25rem;">0.742 (Vegetation)</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Accuracy Section -->
-        <section id="accuracy" class="section">
-            <div class="container">
-                <h2 class="section-title">Accuracy Performance</h2>
-                <p class="section-description">
-                    Accuracy measures the proportion of correct predictions across all feature classifications. <strong>Our Mulberry-Qwen DCoT demonstrates excellent accuracy on key architectural features</strong>, particularly excelling in weep holes and balconies detection.
-                </p>
-                <div class="chart-wrapper">
-                    <div class="controls-section">
-                        <div class="controls-container">
-                            <div class="controls-header">
-                                📊 SELECT MODELS
-                            </div>
-                            <div class="interaction-note">
-                                💡 <strong>Tip:</strong> Click on the model buttons below to show/hide specific models in the chart.
-                            </div>
-                            <div class="controls">
-                                <button class="model-toggle acc-toggle" data-model="0">Mulberry-Qwen DCoT</button>
-                                <button class="model-toggle acc-toggle" data-model="1">Mulberry-Qwen DCoT+Scene</button>
-                                <button class="model-toggle acc-toggle" data-model="2">Qwen2-VL-7B Base</button>
-                                <button class="model-toggle acc-toggle" data-model="3">GPT-4o Base</button>
-                                <button class="model-toggle acc-toggle" data-model="4">SpatialRGPT Base</button>
-                                <button class="model-toggle acc-toggle" data-model="5">SpatialRGPT Bbox</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="accuracyChart"></canvas>
-                    </div>
-                    <div class="insights">
-                        <div class="insight-card mulberry-highlight">
-                            <div class="insight-title">🎯 Our Accuracy Peak</div>
-                            <div class="insight-value">0.778</div>
-                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Weep holes & Balconies</div>
-                        </div>
-                        <div class="insight-card mulberry-highlight">
-                            <div class="insight-title">🏠 Architectural Excellence</div>
-                            <div class="insight-value">0.667</div>
-                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Chimneys & Vegetation</div>
-                        </div>
-                        <div class="insight-card mulberry-highlight">
-                            <div class="insight-title">💪 Robust Detection</div>
-                            <div class="insight-value">0.556</div>
-                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Facade & Dormers</div>
-                        </div>
-                        <div class="insight-card">
-                            <div class="insight-title">📈 Scene Graph Impact</div>
-                            <div class="insight-value">No Change</div>
-                            <div style="font-size: 0.8em; margin-top: 0.25rem;">DCoT already optimal</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Precision Section -->
-        <section id="precision" class="section">
-            <div class="container">
-                <h2 class="section-title">Precision Performance</h2>
-                <p class="section-description">
-                    Precision measures the proportion of true positive predictions among all positive predictions, indicating model specificity. <strong>Our DCoT approach shows competitive precision</strong>, effectively minimizing false positives in architectural feature detection.
-                </p>
-                <div class="chart-wrapper">
-                    <div class="controls-section">
-                        <div class="controls-container">
-                            <div class="controls-header">
-                                📊 SELECT MODELS
-                            </div>
-                            <div class="interaction-note">
-                                💡 <strong>Tip:</strong> Click on the model buttons below to show/hide specific models in the chart.
-                            </div>
-                            <div class="controls">
-                                <button class="model-toggle prec-toggle" data-model="0">Mulberry-Qwen DCoT</button>
-                                <button class="model-toggle prec-toggle" data-model="1">Mulberry-Qwen DCoT+Scene</button>
-                                <button class="model-toggle prec-toggle" data-model="2">Qwen2-VL-7B Base</button>
-                                <button class="model-toggle prec-toggle" data-model="3">GPT-4o Base</button>
-                                <button class="model-toggle prec-toggle" data-model="4">SpatialRGPT Base</button>
-                                <button class="model-toggle prec-toggle" data-model="5">SpatialRGPT Bbox</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="precisionChart"></canvas>
-                    </div>
-                    <div class="insights">
-                        <div class="insight-card mulberry-highlight">
-                            <div class="insight-title">🎯 Our Precision Peak</div>
-                            <div class="insight-value">0.389</div>
-                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Balconies Detection</div>
-                        </div>
-                        <div class="insight-card mulberry-highlight">
-                            <div class="insight-title">🏗️ Low False Positives</div>
-                            <div class="insight-value">0.333</div>
+                            <div class="insight-title">🏗️ Strong Features</div>
+                            <div class="insight-value">0.400</div>
                             <div style="font-size: 0.8em; margin-top: 0.25rem;">Vegetation Growth</div>
                         </div>
                         <div class="insight-card mulberry-highlight">
                             <div class="insight-title">🔍 Reliable Features</div>
-                            <div class="insight-value">0.222</div>
+                            <div class="insight-value">0.267</div>
                             <div style="font-size: 0.8em; margin-top: 0.25rem;">Chimneys Detection</div>
                         </div>
                         <div class="insight-card">
@@ -679,6 +639,63 @@
                             <div class="insight-title">📈 Sensitivity Balance</div>
                             <div class="insight-value">Stable</div>
                             <div style="font-size: 0.8em; margin-top: 0.25rem;">Good feature capture</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Precision Section -->
+        <section id="precision" class="section">
+            <div class="container">
+                <h2 class="section-title">Precision Performance</h2>
+                <p class="section-description">
+                    Precision measures the proportion of true positive predictions among all positive predictions, indicating model specificity. <strong>Our DCoT approach shows competitive precision</strong>, effectively minimizing false positives in architectural feature detection.
+                </p>
+                <div class="chart-wrapper">
+                    <div class="controls-section">
+                        <div class="controls-container">
+                            <div class="header-tip-row">
+                                <div class="controls-header-inline">
+                                    📊 SELECT MODELS
+                                </div>
+                                <div class="tip-inline">
+                                    💡 <strong>Tip:</strong> Click on the model buttons below to show/hide specific models in the chart.
+                                </div>
+                            </div>
+                            <div class="controls">
+                                <button class="model-toggle prec-toggle" data-model="0">Mulberry-Qwen DCoT</button>
+                                <button class="model-toggle prec-toggle" data-model="1">Mulberry-Qwen DCoT+Scene</button>
+                                <button class="model-toggle prec-toggle" data-model="2">Qwen2-VL-7B Base</button>
+                                <button class="model-toggle prec-toggle" data-model="3">GPT-4o Base</button>
+                                <button class="model-toggle prec-toggle" data-model="4">SpatialRGPT Base</button>
+                                <button class="model-toggle prec-toggle" data-model="5">SpatialRGPT Bbox</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="precisionChart"></canvas>
+                    </div>
+                    <div class="insights">
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">🎯 Our Precision Peak</div>
+                            <div class="insight-value">0.389</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Balconies Detection</div>
+                        </div>
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">🏗️ Low False Positives</div>
+                            <div class="insight-value">0.333</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Vegetation Growth</div>
+                        </div>
+                        <div class="insight-card mulberry-highlight">
+                            <div class="insight-title">🔍 Reliable Features</div>
+                            <div class="insight-value">0.222</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Chimneys Detection</div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-title">⚖️ Precision-Recall Balance</div>
+                            <div class="insight-value">Stable</div>
+                            <div style="font-size: 0.8em; margin-top: 0.25rem;">Consistent across features</div>
                         </div>
                     </div>
                 </div>
